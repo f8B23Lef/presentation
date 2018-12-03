@@ -1,0 +1,555 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+    <meta charset="utf-8">
+    
+		<meta name="description" content="CSS Preprocessors">
+		<meta name="author" content="Malash Iryna">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<title>CSS Preprocessors</title>
+
+		<style>
+			pre code.hljs {
+				font-size: 16px; 
+				line-height: 1.5; 
+				tab-size: 2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 1.6em;">CSS Preprocessors. SASS</h1>
+					<p>
+						<small>Created by <a href="https://github.com/f8B23Lef" target="_blank">Malash Iryna</a></small>
+					</p>
+					<aside class="notes">
+						Hello. My name is Iryna. And today I will tell you about CSS Preprocessors.
+					</aside>
+				</section>
+
+				<section>
+					<h2>What is a CSS Preprocessor?</h2>
+					<p>
+						A scripting language that extends CSS and gets compiled into regular CSS syntax.
+					</p>
+					<img src="./img/Compile.png" width="600" height="300"/>
+					<aside class="notes">
+						CSS Preprocessor is a scripting language that extends regular CSS and 
+						then you use some sort of a program application like 'gulp', 'webpack' to compile that scripted language into the regular CSS syntax 
+						that your browser is expecting to see.
+					</aside>
+				</section>
+
+				<section>
+          <section>
+            <h2>Popular CSS Preprocessors</h2>
+            <ul>
+              <li class="fragment">SASS</li>
+              <li class="fragment">LESS</li>
+              <li class="fragment">Stylus</li>
+            </ul>
+            <aside class="notes">
+              There are many preprocessors that developers use depending on their requirements.
+              The three most commonly used are Sass, Less and Stylus.
+              All of the above preprocessors have almost identical functionality, there are only small differences in the syntax. Let's see.
+            </aside>
+          </section>
+
+          <section >
+            <pre><code class="hljs" data-trim>
+              // scss
+              $font-size: 16px;
+
+              div {
+                font-size: $font-size;
+              }
+            </code></pre>
+            <pre><code class="hljs" data-trim>
+              // less
+              @font-size: 16px;
+
+              div {
+                font-size: @font-size;
+              }
+            </code></pre>
+            <pre><code class="hljs" data-trim>
+              // stylus
+              font-size = 16px
+
+              div
+                font-size font-size
+						</code></pre>
+						<aside class="notes">
+							We see that SASS and Less use braces, colons, semicolons and a 'dollar ($)' or an 'at (@)' sign before the variable name.
+							Whereas Stylus uses indentation to separate blocks of code, without colons, semicolons and any characters before the variable name.
+            </aside>
+          </section>
+        </section>
+        
+        <section>
+          <h2>SASS</h2>
+          <h4>(Syntactically awesome style sheets)</h4>
+          <img src="./img/SassLogo.png" width="600" height="300" />
+          <aside class="notes">
+            In this lecture I will tell you about SASS.
+            SASS is extremely feature-rich and highly compatible with CSS. It is coded in Ruby, 
+            is cross platform and integrated with more capabilities than any other CSS extension language.
+          </aside>
+        </section>
+
+        <section>
+          <h2>SASS syntax</h2>
+          <pre><code class="hljs" data-trim>
+            // scss
+            .news {
+              color: #ff1612;
+              padding: 10px;
+              span {
+                text-transform: uppercase;
+              }
+            }
+          </code></pre>
+          <pre><code class="hljs" data-trim>
+            // sass
+            .news
+              color: #ff1612
+              padding: 10px
+              span
+                text-transform: uppercase
+          </code></pre>
+          <aside class="notes">
+            SASS follows two syntax options - SCSS and SASS.
+            1. SCSS is similar to syntax of CSS. It uses braces to denote code blocks and semicolons to separate lines within a block. 
+            2. SASS on the other hand is fairly strict. It uses indentation to separate code blocks and newline characters to separate rules.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Features</h2>
+          <ul>
+            <li>Variables</li>
+						<li>Nesting</li>
+						<li>Import</li>
+            <li>Mixins</li>
+            <li>Inheritance</li>
+            <li>Operators</li>
+            <li>Loops</li>
+            <li>etc.</li>
+          </ul>
+          <aside class="notes">
+						SASS allow you to use features that don't exist in CSS, like variables, nesting, mixins, inheritance, math operations and so on.
+						Let's look at the main ones.
+          </aside>
+				</section>
+					
+				<section>
+					<h2>Variables</h2>
+					<pre><code class="hljs" data-trim>
+						// scss
+						$mainColor: #ff0000;
+						
+						main {
+							color: $mainColor;
+						}
+					</code></pre>
+					<pre><code class="hljs" data-trim>
+						// compiled css						
+						main {
+							color: #ff0000;
+						}
+					</code></pre>
+					<aside class="notes">
+						Variables are a way to store information that you want to reuse throughout your stylesheet. 
+						You can store things like colors, fonts, or any CSS value you think you'll want to reuse. 
+						SASS uses the 'dollar($)' sign to make something a variable. 
+						In our example, if we want to change color, all we have to do is update the variable in one place and it’s updated everywhere!
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>Nesting</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							div {
+								font-size: 14px;
+								p {
+									color: black;
+								}
+							}
+						</code></pre>
+						<pre ><code class="hljs" data-trim>
+							// compiled css						
+							div {
+								font-size: 14px;
+							}
+
+							div p {
+								color: black;
+							}
+						</code></pre>
+						<aside class="notes">
+							CSS does not have the visual hierarchy while working with child selectors. 
+							You will have to write it separately, making the combinations in separate lines.
+							With the Nesting feature, this problem is solved as it provides the same visual hierarchy as in HTML.
+						</aside>
+					</section>
+					<section>
+						<h2>&</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							a {
+								text-decoration: none;
+								&:hover {
+									color: red;
+								}
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css						
+							a {
+								text-decoration: none;
+							}
+							
+							a:hover {
+								color: red;
+							}
+						</code></pre>
+						<aside class="notes">
+							Sass provides a way to add styles to a previous selector by using an ampersand '&'. It refers to the parent selector.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>Import</h2>
+					<pre><code class="hljs" data-trim>
+						// _reset.scss
+						html,
+						body,
+						ul,
+						ol {
+							margin:  0;
+							padding: 0;
+						}
+					</code></pre>
+					<pre><code class="hljs" data-trim>
+						// base.scss
+						@import 'reset';
+						
+						body {
+							font: 100% Helvetica, sans-serif;
+							background-color: #efefef;
+						}
+					</code></pre>
+					<aside class="notes">
+						Sass allows you to import SCSS and Sass files. All imported files will be merged together into a single CSS output file.
+						Notice we're using @import 'reset'; without underscore and file extension in the base.scss file. 
+						The underscore lets Sass know that the file is only a partial file and that it shouldn't be generated into a CSS file.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Mixins</h2>
+					<pre><code class="hljs" data-trim>
+						// scss
+						@mixin border-radius($radius: 5px) {
+							border-radius: $radius;
+						}
+							
+						button {
+							@include border-radius(10px);
+						}
+					</code></pre>
+					<pre><code class="hljs" data-trim>
+						// compiled css
+						button {
+							border-radius: 10px;
+						}
+					</code></pre>
+					<aside class="notes">
+						A mixin lets you make groups of CSS declarations that you want to reuse. 
+						We can also specify default argument values using a colon(:) and a value after it.
+						In our example, we declared a mixin named 'border-radius' with a default $radius set to 5 pixels. 
+						In button selector we use our mixin with argument $radius equal to 10 pixels. 
+						After compiling our button has property 'border-radius' equal 10 pixels.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>Extends</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							.button {
+								display: inline-block;
+								border-radius: 3px;
+								padding: 16px;
+							}
+							
+							.button-cancel {
+								@extend .button;
+								color: #ff0000;
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css
+							.button, .button-cancel {
+								display: inline-block;
+								border-radius: 3px;
+								padding: 16px;
+							}
+
+							.button-cancel {
+								color: #ff0000;
+							}
+						</code></pre>
+						<aside class="notes">
+							Extends	lets you share and reuse a set of CSS properties from one selector to another without needing to repeat code or use additional classes.
+							Class '.button-cancel' inherits styles from '.button' class and adds your own color property.
+							After transforming scss to css the common properties ('display', 'border-radius' and 'padding') described in one rule. 
+							While unique properties in separate rules. 
+						</aside>
+					</section>
+					<section>
+						<h2>Placeholder Selector</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							%button {
+								display: inline-block;
+								border-radius: 3px;
+								padding: 16px;
+							}
+							
+							.button-cancel {
+								@extend %button;
+								color: #ff0000;
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css
+							.button-cancel {
+								display: inline-block;
+								border-radius: 3px;
+								padding: 16px;
+							}
+							
+							.button-cancel {
+								color: #ff0000;
+							}
+						</code></pre>
+						<aside class="notes">
+							To avoid building a bunch of unused classes only for extends we can use a placeholder selector.
+							It is initialized with a percentage sign(%), and is never compiled into CSS. 
+							Instead, it is used to attach selectors to when it is called with an extend.
+							We can see that there is no rule for 'button' selector in the compiled css file.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>Operators</h2>
+					<pre><code class="hljs" data-trim>
+						// scss
+						$nav-height: 60px;
+						
+						body {
+							padding-top: $nav-height + 40px;
+						}
+
+						.nav {
+							height: $nav-height;
+						}
+					</code></pre>
+					<pre><code class="hljs" data-trim>
+						// compiled css
+						body {
+							padding-top: 100px;
+						}
+						
+						.nav {
+							height: 60px;
+						}
+					</code></pre>
+					<aside class="notes">
+						Sass allows you to use math operators like addition(+), subtraction(-), multiplication(*), division(/) and modulo(%).
+						Padding-top for the body is calculated by adding $nav-height value and 40 pixels.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>If/Else Statements</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							$time: afternoon;
+
+							p {
+								@if $time == morning {
+									color: red;
+								} @else if $time == afternoon {
+									color: blue;
+								} @else {
+									color: gray;
+								}
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css
+							p {
+								color: blue;
+							}
+						</code></pre>
+						<aside class="notes">
+							An @if statement is handy for checking if a variable exists or matches something.
+							The @if statement can be followed by several @else if statements and one @else statement.
+							Once a statement is successful identified, the styles directly tied to it will be applied.
+							We declared the variable $time with value 'afternoon'. In p selector we check one by one what the variable $time is equal to. 
+							$time is 'morning' - no. Then we go to the @else if statement. $time is 'afternoon' - yes. Now our paragraphs will have a property 'color: blue;'.
+						</aside>
+					</section>
+					<section>
+						<h2>For Loop</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							@for $i from 1 through 3 {
+								.item-#{$i} { 
+									width: 2em * $i; 
+								}
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css
+							.item-1 {
+								width: 2em;
+							}
+							.item-2 {
+								width: 4em;
+							}
+							.item-3 {
+								width: 6em;
+							}
+						</code></pre>
+						<aside class="notes">
+							Sass has three types of loop. The first one is @for.
+							You can use the @for directive to execute a group of statement a specific number of times. 
+							Loop has start and end values. @for loop is executed from the start value to the end value with the step 1.
+							It has two variations which differ in how the end value is processed.
+							'from 1 TO n' form executes a loop for indexes from 1 to n-1.
+							'from 1 THROUGH n' form executes a loop for indexes from 1 to n.
+						</aside>
+					</section>
+					<section>
+						<h2>Each Loop</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							@each $s in normal, bold, italic {
+								.#{$s} {
+									font-weight: $s;
+								}
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css
+							.normal {
+								font-weight: normal;
+							}
+							
+							.bold {
+								font-weight: bold;
+							}
+							
+							.italic {
+								font-weight: italic;
+							}
+						</code></pre>
+						<aside class="notes">
+							The @each rule returns styles for each item in a list. List may include multiple comma separated items.
+						</aside>
+					</section>
+					<section>
+						<h2>While Loop</h2>
+						<pre><code class="hljs" data-trim>
+							// scss
+							$i: 4;
+							@while $i > 0 {
+								.item-#{$i} { 
+									width: 2em * $i; 
+								}
+								$i: $i - 2;
+							}
+						</code></pre>
+						<pre><code class="hljs" data-trim>
+							// compiled css
+							.item-4 {
+								width: 8em; 
+							}
+							
+							.item-2 {
+								width: 4em; 
+							}
+						</code></pre>
+						<aside class="notes">
+							The @while rule repeatedly returns styles until the statement becomes false.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>Advantages</h2>
+          <ul>
+						<li>Modularity</li>
+						<li>Usability</li>
+						<li>Understandability</li>
+						<li>Reusability</li>
+					</ul>
+					<aside class="notes">
+						Having considered all the features of preprocessors, 
+						we can conclude that they will effectively help organize your style code making it more maintainable, understandable and reusable. 
+					</aside>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+					<aside class="notes">
+						Thank you for attention. Bye.
+						</aside>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide',
+
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
